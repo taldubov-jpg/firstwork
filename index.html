@@ -3,84 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Stock Analyzer | ניתוח מניות חכם</title>
+    <title>Stocks Finders | AI Finance Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .gradient-text { background: linear-gradient(90deg, #4f46e5, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .ai-glow { box-shadow: 0 0 20px rgba(79, 70, 229, 0.2); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-[#0b0f1a] text-slate-200 font-sans">
+<body class="bg-[#020617] text-slate-200 font-sans h-screen flex flex-col overflow-hidden">
 
-    <nav class="border-b border-slate-800 p-4 sticky top-0 bg-[#0b0f1a]/80 backdrop-blur-md z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-black gradient-text tracking-tighter italic">FIN-AI PRO</div>
-            <div class="flex gap-4">
-                <button class="text-sm font-medium hover:text-indigo-400">התחברות</button>
-                <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-lg text-sm font-bold transition shadow-lg shadow-indigo-500/20">הרשמה חינם</button>
+    <nav class="border-b border-slate-800 px-6 py-3 flex justify-between items-center bg-[#020617] z-50">
+        <div class="flex items-center gap-8">
+            <div class="text-2xl font-black text-indigo-500 tracking-tighter uppercase">Stocks Finders</div>
+            <div class="hidden md:flex gap-6 text-sm text-slate-400">
+                <a href="#" class="hover:text-white transition">שווקים</a>
+                <a href="#" class="hover:text-white transition">ניתוח AI</a>
+                <a href="#" class="text-indigo-400 font-bold">PRO</a>
             </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="alert('פונקציית הרשמה דורשת חיבור לבסיס נתונים - נקים זאת בשלב הבא!')" class="text-sm font-bold text-slate-400 hover:text-white transition">כניסה</button>
+            <button onclick="alert('כאן יפתח טופס לאיסוף פרטי לקוח')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-full text-sm font-black transition shadow-lg shadow-indigo-500/20">הרשמה</button>
         </div>
     </nav>
 
-    <div class="flex h-screen overflow-hidden">
+    <div class="flex flex-1 overflow-hidden">
         
-        <aside class="w-64 border-l border-slate-800 p-4 flex flex-col bg-[#0f172a]">
-            <h3 class="font-bold mb-4 text-slate-400 text-xs uppercase tracking-widest">רשימת מניות (2/5 בשימוש)</h3>
-            <div class="space-y-2 flex-grow">
-                <div class="glass p-3 rounded-xl flex justify-between items-center border-r-4 border-emerald-500">
-                    <span class="font-bold">NVDA</span>
-                    <span class="text-emerald-400 text-xs">+2.4%</span>
+        <aside class="w-80 border-l border-slate-800 flex flex-col bg-[#0b0f1a]">
+            <div class="p-4 border-b border-slate-800">
+                <div class="relative">
+                    <i class="fas fa-search absolute right-3 top-3 text-slate-500"></i>
+                    <input type="text" placeholder="חפש מניה (AAPL, TSLA...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl py-2 pr-10 pl-4 text-sm focus:border-indigo-500 outline-none transition">
                 </div>
-                <div class="glass p-3 rounded-xl flex justify-between items-center border-r-4 border-red-500">
-                    <span class="font-bold">TSLA</span>
-                    <span class="text-red-400 text-xs">-1.1%</span>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-4 space-y-3">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Watchlist (Free Tier 2/5)</p>
+                <div class="glass p-3 rounded-xl flex justify-between items-center border-r-2 border-emerald-500 hover:bg-slate-800 cursor-pointer transition">
+                    <div><span class="block font-bold">NVDA</span><span class="text-[10px] text-slate-500">NVIDIA CORP</span></div>
+                    <div class="text-right text-emerald-400 font-bold text-sm">+2.15%</div>
                 </div>
-                <div class="p-3 rounded-xl flex justify-between items-center bg-slate-900/50 opacity-50 grayscale">
-                    <span class="font-bold text-sm italic">שדרוג ל-PRO...</span>
+                <div class="glass p-3 rounded-xl flex justify-between items-center border-r-2 border-red-500 hover:bg-slate-800 cursor-pointer transition">
+                    <div><span class="block font-bold">TSLA</span><span class="text-[10px] text-slate-500">TESLA MOTORS</span></div>
+                    <div class="text-right text-red-400 font-bold text-sm">-0.84%</div>
+                </div>
+                <div class="glass p-3 rounded-xl flex justify-between items-center opacity-40 grayscale cursor-not-allowed group">
+                    <div><span class="block font-bold">AAPL</span><span class="text-[10px] text-slate-500">APPLE INC</span></div>
                     <i class="fas fa-lock text-xs"></i>
                 </div>
             </div>
-            
-            <div class="mt-auto bg-gradient-to-br from-indigo-600 to-cyan-600 p-4 rounded-2xl shadow-xl">
-                <p class="text-xs font-bold mb-2">צריך יותר מ-5 מניות?</p>
-                <p class="text-lg font-black mb-3">20 ₪ <span class="text-xs font-normal">לחודש</span></p>
-                <button class="w-full bg-white text-indigo-900 py-2 rounded-lg font-bold text-sm hover:bg-slate-100 transition">שדרג עכשיו</button>
+
+            <div class="p-4 bg-indigo-900/20 border-t border-indigo-500/30">
+                <div class="text-center">
+                    <p class="text-xs text-indigo-300 mb-2 font-bold uppercase">שדרג לגרסה ללא הגבלה</p>
+                    <p class="text-2xl font-black mb-4">20 ₪ <span class="text-xs font-normal opacity-60">/ חודש</span></p>
+                    <a href="https://www.paypal.com/paypalme/YOUR_LINK/20" target="_blank" class="block w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-xl font-bold transition">שדרג ב-PayPal</a>
+                </div>
             </div>
         </aside>
 
-        <main class="flex-grow overflow-y-auto p-6 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
+        <main class="flex-grow flex flex-col p-6 overflow-y-auto gap-6 bg-[#020617]">
             
-            <div class="flex justify-between items-end mb-8">
+            <div class="flex justify-between items-start">
                 <div>
-                    <h1 class="text-4xl font-black mb-2 tracking-tight">NVIDIA Corp <span class="text-slate-500 font-normal">($142.25)</span></h1>
-                    <div class="flex gap-2">
-                        <span class="bg-indigo-500/20 text-indigo-400 px-2 py-1 rounded text-xs font-bold">RSI: 62</span>
-                        <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-bold">MA(50): Bullish</span>
+                    <h1 class="text-3xl font-black">NVIDIA Corp. <span class="text-indigo-400">NVDA</span></h1>
+                    <div class="flex gap-4 mt-2">
+                        <span class="text-sm bg-slate-800 px-3 py-1 rounded-md text-slate-300">Market Cap: $3.4T</span>
+                        <span class="text-sm bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-md font-bold">AI Prediction: Bullish</span>
                     </div>
                 </div>
-                <div class="text-right">
-                    <p class="text-xs text-slate-500 uppercase font-bold">ניתוח AI אחרון</p>
-                    <p class="text-emerald-400 font-bold italic">Buy Signal Strength: 88%</p>
-                </div>
             </div>
 
-            <div class="glass w-full h-[400px] rounded-3xl mb-8 flex items-center justify-center border-indigo-500/30 overflow-hidden relative group">
-                <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent"></div>
-                <p class="text-slate-500 italic"><i class="fas fa-chart-line ml-2"></i>כאן יופיע הגרף החי עם האינדיקטורים...</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass p-6 rounded-2xl">
-                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                        <i class="fas fa-file-invoice-dollar text-indigo-400"></i> נתוני דוחות (AI Summary)
-                    </h3>
-                    <ul class="space-y-3 text-sm text-slate-400">
-                        <li class="flex justify-between"><span>רווח נקי:</span> <span class="text-white font-bold">$12.5B</span></li>
-                        <li class="flex justify-between"><span>צמיחה שנתית:</span> <span class="text-emerald-400 font-bold">+262%</span></li>
-                        <li class="flex justify-between"><span>מכפיל רווח (P/E):</span> <span class="text-white font-bold">68.2</span></li>
-                    </ul>
+            <div class="flex-grow min-h-[450px] glass rounded-3xl overflow-hidden border-indigo-500/20">
+                <div class="tradingview-widget-container" style="height:100%;width:100%">
+                    <div id="tradingview_12345" style="height:calc(100% - 32px);width:100%"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                    <script type="text/javascript">
+                    new TradingView.widget({
+                        "autosize": true,
+                        "symbol": "NASDAQ:NVDA",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "he_IL",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_12345"
+                    });
+                    </script>
+                </div>
                 </div>
 
-                <div class="glass p-6 rounded-2xl flex flex-col h-[300px] border-indigo-500/20 shadow-2xl shadow-indigo-500/5">
-                    <h3 class="text-lg font
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div class="lg:col-span-2 glass rounded-3xl p-6 ai-glow border-indigo-500/30 flex flex-col h-[400px]">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center shadow-lg"><i class="fas fa-robot"></i></div>
+                        <div><h3 class="font-bold">Stocks Finders AI Advisor</h3><p class="text-[10px] text-indigo-400">Online & Analyzing Live Data</p></div>
+                    </div>
+                    <div class="flex-grow bg-slate-900/50 rounded-2xl p-4 overflow-y-auto mb-4 text-sm space-y-4">
+                        <div class="bg-indigo-600/20 p-3 rounded-2xl rounded-br-none max-w-[80%]">
+                            שלום! אני מנתח את NVDA ברגע זה. המניה נסחרת מעל ממוצע נע 50. האם תרצה פירוט על דוח הרווחים האחרון או תחזית לשבוע הקרוב?
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <input type="text" placeholder="שאל את ה-AI על נתוני דוחות, רווחים או גרפים..." class="w-full bg-slate-800 border-none rounded-2xl p-4 pr-12 outline-none focus:ring-2 focus:ring-indigo-500">
+                        <button class="absolute left-4 top-3.5 text-indigo-400 text-xl"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+
+                <div class="glass rounded-3xl p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2"><i class="fas fa-chart-pie text-indigo-400"></i> דוחות כספיים</h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/50 p-3 rounded-xl border-l-2 border-indigo-500">
+                            <p class="text-[10px] text-slate-500">EPS (רווח למניה)</p>
+                            <p class="text-xl font-black">$0.68 <span class="text-xs text-emerald-400 font-normal">+12%</span></p>
+                        </div>
+                        <div class="bg-slate-900/50 p-3 rounded-xl border-l-2 border-indigo-500">
+                            <p class="text-[10px] text-slate-500">Revenue (הכנסות)</p>
+                            <p class="text-xl font-black">$30.04B <span class="text-xs text-emerald-400 font-normal">+262%</span></p>
+                        </div>
+                        <div class="bg-slate-900/50 p-3 rounded-xl border-l-2 border-indigo-500">
+                            <p class="text-[10px] text-slate-500">Operating Margin</p>
+                            <p class="text-xl font-black">62.3%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
